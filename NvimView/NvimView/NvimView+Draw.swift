@@ -104,12 +104,18 @@ extension NvimView {
       return
     }
 
+    var redCursorAttrs = CellAttributes(fontTrait: cursorAttrs.fontTrait,
+        foreground: 0x000000,
+        background: 0xdc322f,
+        special: 0x00,
+        reverse: false)
+
     let attrsRun = AttributesRun(
       location: self.pointInView(
         forRow: cursorPosition.row, column: cursorPosition.column
       ),
       cells: self.ugrid.cells[cursorPosition.row][cursorRegion.columnRange],
-      attrs: cursorAttrs
+      attrs: redCursorAttrs
     )
     self.drawer.draw(
       [attrsRun],
