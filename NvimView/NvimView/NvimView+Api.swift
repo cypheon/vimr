@@ -180,10 +180,16 @@ extension NvimView {
   }
 
   public func didBecomeMain() -> Completable {
+    hasFocus = true
+    let cursorRegion = self.cursorRegion(for: self.ugrid.cursorPosition)
+    setNeedsDisplay(self.rect(for: cursorRegion))
     return self.bridge.focusGained(true)
   }
 
   public func didResignMain() -> Completable {
+    hasFocus = false
+    let cursorRegion = self.cursorRegion(for: self.ugrid.cursorPosition)
+    setNeedsDisplay(self.rect(for: cursorRegion))
     return self.bridge.focusGained(false)
   }
 
