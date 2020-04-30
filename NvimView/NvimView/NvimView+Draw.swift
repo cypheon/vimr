@@ -133,6 +133,17 @@ extension NvimView {
       special: cellAtCursorAttrs.special,
       reverse: false)
 
+    guard hasFocus else {
+      context.setLineWidth(2)
+      context.setStrokeColor(
+        ColorUtils.cgColorIgnoringAlpha(
+          cursorAttrs.effectiveBackground
+        )
+      )
+      context.stroke(self.rect(for: cursorRegion))
+      return
+    }
+
     context.saveGState()
     // clip to cursor rect to support shapes like "ver25" and "hor50"
     context.clip(to: cursorRect)

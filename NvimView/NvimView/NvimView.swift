@@ -218,6 +218,8 @@ public class NvimView: NSView,
   var currentlyResizing = false
   var currentEmoji = "😎"
 
+  var hasFocus = true
+
   var _font = NvimView.defaultFont
   var _cwd = URL(fileURLWithPath: NSHomeDirectory())
   var isInitialResize = true
